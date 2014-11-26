@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unikorn</title>
+  </head>
+  <body>
+    <h1>Unikorn</h1>
+    <script>
+      var gui = require('nw.gui');
+      var win = gui.Window.get();
+      
+      win.on("close", function() {
+        win.hide();
+      })
+      
+      var tray = new gui.Tray({
+        icon: "icon.png"
+      })
+      var menu = new gui.Menu();
+      menu.append(new gui.MenuItem({
+          label: 'Quit',
+          click: function () {
+            gui.App.quit();
+          }
+        }));
+      tray.menu = menu;
+      tray.tooltip = "Unikorn";
+      tray.on("click", function() {
+        win.show()
+      })
+    </script>
+  </body>
+</html>
